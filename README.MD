@@ -1,6 +1,6 @@
 # H3xplorer | A Hexagonal Mapping Tool
 
-H3xplorer is an open-source online tool that enables users to create, edit, and explore hexagon-based maps using Uber's H3 geo-coordinates. Designed for data scientists, urban planners, and hobbyists.
+H3xplorer (/hɛksˈplɔːrər/) is an open-source online tool that enables users to create, edit, and explore hexagon-based maps using Uber's H3 geo-coordinates. Designed for data scientists, urban planners, and hobbyists.
 
 You can access the live demo here: [H3xplorer](https://faraji.info/h3xplorer/h3xplorer.html).
 
