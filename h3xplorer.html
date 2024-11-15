@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H3xplorer: Hexagon Mapping Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/h3-js@3.7.2"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
+
+</head>
+
+<body>
+    <div id="map"></div>
+    <button id="togglePanelBtn"><<</button>
+    <div id="panel">
+        <div class="collapse collapse-arrow border-base-300 bg-base-200 border">
+            <input type="checkbox" checked />
+            <div class="collapse-title text-xl font-medium">Adding Hexagon(s)</div>
+            <div class="collapse-content">
+
+                <label class="form-control w-full max-w-xs">
+                    <div class="label">
+                        <span class="label-text">Select Color (also the transparency):</span>
+                    </div>
+                    <input type="text" id="colorPicker" value="#ff6600AA" class="input input-bordered w-full max-w-xs"
+                        data-coloris>
+                </label>
+
+                <label class="form-control w-full max-w-xs">
+                    <div class="label">
+                        <span class="label-text">Select Resolution:</span>
+                    </div>
+                    <select class="select select-bordered" name="resolutionToAdd" id="hexResolution">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11" selected>11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                    </select>
+                    <div class="label">
+                        <span class="label-text-alt">Click on Map to add hexagon.</span>
+                    </div>
+                </label>
+
+                <div class="divider">OR</div>
+
+                <label class="form-control w-full max-w-xs">
+                    <div class="label">
+                        <span class="label-text">Add By Hexagon ID:</span>
+                    </div>
+                    <input type="text" id="hexagonInput" placeholder="Type here"
+                        class="input input-bordered w-full max-w-xs"
+                        placeholder="Enter hexagon ID(s) separated by space" />
+                    <div class="label">
+                        <span class="label-text-alt"> For a list of IDs just separate the hexagons in
+                            the list by a white space.</span>
+                    </div>
+                </label>
+
+                <button class="btn btn-active btn-primary" id="addHexagonBtn">Add Hexagon(s)</button>
+            </div>
+        </div>
+
+        <div class="collapse collapse-arrow border-base-300 bg-base-200 border mt-4">
+            <input type="checkbox" />
+            <div class="collapse-title text-xl font-medium">Map Setting</div>
+            <div class="collapse-content">
+
+                <label class="form-control w-full max-w-xs">
+                    <div class="label">
+                        <span class="label-text">Select Tile Layer:</span>
+                    </div>
+                    <select id="tileSelector" class="select select-bordered">
+                        <option value="osm" selected>OpenStreetMap</option>
+                        <option value="topographic">Topographic</option>
+                    </select>
+                </label>
+
+                <label class="form-control w-full max-w-xs">
+                    <div class="label">
+                        <span class="label-text">Tile Opacity</span>
+                    </div>
+                    <input type="range" id="opacitySlider" min="0" max="100" value="100" class="range" />
+                </label>
+            </div>
+        </div>
+
+        <div class="collapse collapse-arrow border-base-300 bg-base-200 border mt-4">
+            <input type="checkbox" />
+            <div class="collapse-title text-xl font-medium">Hexagons List</div>
+            <div class="collapse-content">
+                <div class="join join-vertical w-full" id="hexagonsListContainer">
+                    <p class="text-center text-gray-500">No hexagons added yet</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
