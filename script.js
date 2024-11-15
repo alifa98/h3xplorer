@@ -96,6 +96,8 @@ function renderHexagonList() {
     if (Object.keys(hexagons).length === 0) {
         listContainer.innerHTML = '<p class="text-center text-gray-500">No hexagons added yet</p>';
         return
+    }else{
+        listContainer.innerHTML = '<p class="text-sm text-center text-gray-500 mb-1">Right Click on a hexagon to find it here.</p>';
     }
 
     Object.keys(hexagons).forEach(hexId => {
@@ -107,8 +109,8 @@ function renderHexagonList() {
         hexItem.style.backgroundColor = hexInfo.color;
 
         hexItem.innerHTML = `
-            <input type="radio" name="my-accordion-4" />
-            <div class="collapse-title text-l font-medium">ID: ${hexId}</div>
+            <input type="radio" name="accordion-1" />
+            <div class="collapse-title text-lg font-medium" id="hexTitle-${hexId}">ID: ${hexId}</div>
             <div class="collapse-content">
                 <label for="hexColor-${hexId}">Color:</label>
                 <input type="text" id="hexColor-${hexId}" value="${hexInfo.color}" class="input input-bordered w-full max-w-xs" data-coloris />
@@ -137,6 +139,16 @@ function renderHexagonList() {
         deleteBtn.addEventListener('click', (event) => {
             deleteHexagon(hexId);
         });
+
+        // right click event
+        hexagons[hexId].polygon.on('contextmenu', (e) => {
+            const hexTitle = document.getElementById(`hexTitle-${hexId}`);
+            hexTitle.classList.add('shake');
+            setTimeout(() => {
+                hexTitle.classList.remove('shake');
+            }, 1500); // Match the animation duration in CSS
+        });
+
     });
 }
 
@@ -156,6 +168,7 @@ function updateHexagon(hexId) {
             updatedPolygon.bindTooltip(hexInfo.text, { permanent: true, direction: 'center' });
 
         }
+
         hexInfo.polygon = updatedPolygon; // Update reference
     }
 }
